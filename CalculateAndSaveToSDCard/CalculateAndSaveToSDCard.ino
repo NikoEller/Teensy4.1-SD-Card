@@ -21,6 +21,12 @@ const int buildInLEDPin = 13;
 const String fileName = "data.txt";
 int i = 0;
 
+
+/*
+  Setup function is run first and initializes all the 
+  - onboard LED
+  - onboard SD
+*/
 void setup() {
   // Setup on board LED
   pinMode(buildInLEDPin, OUTPUT);
@@ -32,6 +38,7 @@ void setup() {
     ; // wait for serial port to connect.
   }
 
+//------------------SD-CARD------------------
   Serial.println("Initializing SD card...");
 
   if (!card.init(SPI_HALF_SPEED, chipSelect)) {
@@ -39,16 +46,18 @@ void setup() {
     return;
   }
   Serial.println("initialization done.");
+  //print the card info
   cardinfo();
+//-------------------------------------------
 
-  
+  //removes the data if there is already one
   SD.remove("data.txt");
   
 
 }
 
 /*
-
+  the main loop
 */
 void loop() {
 
@@ -66,7 +75,9 @@ void loop() {
 
 
 /*
+  this function writes the data to the file
 
+  String data : data wich will be written to the file 
 */
 void saveData(String data){
   //open the file
@@ -87,7 +98,7 @@ void saveData(String data){
 }
 
 /*
-
+  reads all the data from the file
 */
 void readData(){
   //open the file
@@ -112,7 +123,7 @@ void readData(){
 
 */
 void blink() {
-  digitalWrite(buildInLEDPin, HIGH);   // turn the LED on (HIGH is the voltage level)
+  digitalWrite(buildInLEDPin, HIGH);   // turn the LED on by making the voltage HIGH
   delay(100);               
   digitalWrite(buildInLEDPin, LOW);    // turn the LED off by making the voltage LOW
   delay(100);
@@ -120,7 +131,7 @@ void blink() {
 }
 
 /*
-
+  Prints the card info of the sd card
 */
 void cardinfo(){
   // print the type of card
