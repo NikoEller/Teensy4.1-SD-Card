@@ -42,6 +42,7 @@ void setup() {
 }
 
 void loop() {
+
   // put your main code here, to run repeatedly:
   if( i < 5){
     saveData(i+1);
@@ -95,9 +96,9 @@ void readData(){
 
 void blink() {
   digitalWrite(buildInLEDPin, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(100);               
+  delay(1000);               
   digitalWrite(buildInLEDPin, LOW);    // turn the LED off by making the voltage LOW
-  delay(100);
+  delay(1000);
 
 }
 
