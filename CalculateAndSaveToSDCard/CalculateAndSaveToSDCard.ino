@@ -10,6 +10,9 @@
 #include <SD.h>
 #include <SPI.h>
 
+Sd2Card card;
+SdVolume volume;
+SdFile root;
 File myFile;
 const int chipSelect = BUILTIN_SDCARD;
 const int buildInLEDPin = 13;
@@ -29,9 +32,9 @@ void setup() {
     ; // wait for serial port to connect.
   }
 
-  Serial.print("Initializing SD card...");
+  Serial.println("Initializing SD card...");
 
-  if (!SD.begin(chipSelect)) {
+  if (!card.init(SPI_HALF_SPEED, chipSelect)) {
     Serial.println("initialization failed!");
     return;
   }
@@ -96,11 +99,15 @@ void readData(){
 
 void blink() {
   digitalWrite(buildInLEDPin, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);               
+  delay(100);               
   digitalWrite(buildInLEDPin, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);
+  delay(100);
 
 }
 
+void cardinfo(){
+
+
+}
 
   
